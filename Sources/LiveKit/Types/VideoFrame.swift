@@ -50,10 +50,10 @@ public struct I420VideoBuffer: VideoBuffer, RTCCompatibleVideoBuffer {
 }
 
 public class VideoFrame: NSObject {
-    let dimensions: Dimensions
-    let rotation: VideoRotation
-    let timeStampNs: Int64
-    let buffer: VideoBuffer
+    public let dimensions: Dimensions
+    public let rotation: VideoRotation
+    public let timeStampNs: Int64
+    public let buffer: VideoBuffer
 
     // TODO: Implement
 
@@ -69,7 +69,7 @@ public class VideoFrame: NSObject {
     }
 }
 
-extension LKRTCVideoFrame {
+public extension LKRTCVideoFrame {
     func toLKType() -> VideoFrame? {
         let lkBuffer: VideoBuffer
 
@@ -89,7 +89,7 @@ extension LKRTCVideoFrame {
     }
 }
 
-extension VideoFrame {
+public extension VideoFrame {
     func toRTCType() -> LKRTCVideoFrame {
         // This should never happen
         guard let buffer = buffer as? RTCCompatibleVideoBuffer else { fatalError("Buffer must be a RTCCompatibleVideoBuffer") }
